@@ -1,6 +1,5 @@
-/**
- * Created by sibelius on 05/04/16.
- */
-import User from './User';
 
-export default [User];
+import User from './User';
+import Contact from './Contact';
+
+export default [User, Contact];

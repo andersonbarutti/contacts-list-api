@@ -3,8 +3,12 @@
 import compose from 'koa-compose';
 import Router from 'koa-router';
 import importDir from 'import-dir';
+import gen from './gen';
 
-const routerConfigs = [{ folder: 'base', prefix: '' }, { folder: 'api', prefix: '/api' }];
+const routerConfigs = [
+  { folder: 'base', prefix: '' },
+  { folder: 'api', prefix: '/api' }
+];
 
 export default function routes() {
   const composed = routerConfigs.reduce((prev, curr) => {
@@ -18,5 +22,16 @@ export default function routes() {
     return [router.routes(), router.allowedMethods(), ...prev];
   }, []);
 
-  return compose(composed);
+  const routerToGen = new Router({
+    prefix: '/api'
+  });
+
+  gen(routerToGen);
+
+  return compose(
+    composed.concat([
+      routerToGen.routes(),
+      routerToGen.allowedMethods()
+    ])
+  );
 }

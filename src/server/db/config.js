@@ -1,5 +1,5 @@
 'use strict';
 
-export const development = 'mongodb://localhost/mydb';
-export const production = 'mongodb://localhost/mydb';
-export const test = 'mongodb://localhost/mydb-test';
+export const development = 'mongodb://localhost/live';
+export const production = 'mongodb://localhost/live';
+export const test = 'mongodb://localhost/live-test';
